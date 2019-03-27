@@ -193,7 +193,7 @@ database = load_pickle(os.path.join(sys.path[0], 'db.pickle'), 'rb')
 searcher = Searcher(database, CosineMeasure())
 
 # Input directory of letters (finds all .txt files and ignores rest)
-letter_dir = os.path.join(sys.path[0], 'letter_directory/')
+letter_dir = os.path.join(sys.path[0], os.environ["input_dir"])
 letter_type = '.txt'
 
 # Read in letters
