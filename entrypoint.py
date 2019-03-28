@@ -22,7 +22,8 @@ def get_letters_incl_spacy(directory, filetype):
     letters = []
     for filename in os.listdir(directory):
         if filename.endswith(filetype):
-            letters.append([filename, nlp(open(directory + filename).read())])
+            letters.append(
+                [filename, nlp(open(os.path.join(directory, filename)).read())])
     return letters
 
 
@@ -172,6 +173,8 @@ def medgate_trial_json(lower, upper, clean_terms, raw_terms=None):
 
 # Get most similar UMLS term and output to file
 def main(letter, lower, upper, output_file):
+    print(os.path.join(sys.path[0], os.environ["input_dir"]))
+
     sentences = get_sentences(letters)
     raw_terms, clean_terms = get_candidate_terms(sentences)
 
@@ -204,7 +207,7 @@ lower_threshold = 0.95
 upper_threshold = 1.00
 
 # Output file name
-output_dir = os.path.join(sys.path[0],os.environ["output_dir"])
+output_dir = os.path.join(sys.path[0], os.environ["output_dir"])
 os.makedirs(output_dir, exist_ok=True)
 output = os.path.join(output_dir, 'TestFile.json')
 
