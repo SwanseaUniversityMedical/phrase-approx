@@ -184,7 +184,7 @@ def main(letter, lower, upper, output_file):
 try:
     nlp = spacy.load('en_core_web_md')
 except:
-    os.system('python -m spacy download en_core_web_md')
+    os.system('python3 -m spacy download en_core_web_md')
     nlp = spacy.load('en_core_web_md')
 
 stopwords = set(
