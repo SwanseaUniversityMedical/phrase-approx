@@ -173,8 +173,6 @@ def medgate_trial_json(lower, upper, clean_terms, raw_terms=None):
 
 # Get most similar UMLS term and output to file
 def main(letter, lower, upper, output_file):
-    print(os.path.join(sys.path[0], os.environ["input_dir"]))
-
     sentences = get_sentences(letters)
     raw_terms, clean_terms = get_candidate_terms(sentences)
 
@@ -196,7 +194,7 @@ database = load_pickle(os.path.join(sys.path[0], 'db.pickle'), 'rb')
 searcher = Searcher(database, CosineMeasure())
 
 # Input directory of letters (finds all .txt files and ignores rest)
-letter_dir = os.path.join(sys.path[0], os.environ["input_dir"])
+letter_dir = os.environ["input_dir"]
 letter_type = '.txt'
 
 # Read in letters
@@ -207,7 +205,7 @@ lower_threshold = 0.95
 upper_threshold = 1.00
 
 # Output file name
-output_dir = os.path.join(sys.path[0], os.environ["output_dir"])
+output_dir = os.environ["output_dir"]
 os.makedirs(output_dir, exist_ok=True)
 output = os.path.join(output_dir, 'TestFile.json')
 
